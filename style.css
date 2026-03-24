@@ -1,0 +1,75 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #faa43c;
+    text-align: center;
+    padding: 20PX;
+}
+
+section {
+    background-color: antiquewhite;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 15px 5px rgba(0,0,0,0.1);
+}
+
+#totalBricks{
+    font-size: 3rem;
+    font-weight: bold;
+    color:blue;
+    margin: 10px 0;
+}
+
+input[type="text"]{
+    width: 80%;
+    padding: 12px;
+    text-align: center;
+    margin: 10px 0;
+    border: 2px solid blue;
+    border-radius: 12px;
+    font-size: 1rem;
+    outline: none;
+}
+
+input:focus{
+    border-color: deeppink;
+}
+
+button {
+    background-color: blue;
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 18px;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+button:hover {
+    background-color: chocolate;
+}
+
+.progress-container{
+    width: 90%;
+    background-color: #faa43c;
+    border-radius: 20px;
+    margin: 15px auto;
+    height: 25px;
+    overflow: hidden;
+    border: 2px solid blue;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: green;
+    transition: width 0.8s ease-in-out;
+}
+
+#progress-text {
+    font-size: 1em;
+    font-weight: bold;
+    color: blue;
+    margin-bottom: 10px;
+}
