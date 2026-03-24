@@ -49,7 +49,7 @@ async function generatePDF(name){
 }
 
 database.ref().on('value', (snapshot) => {
-    const data = snapshot.data() || {};
+    const data = snapshot.val|| {};
     const bricks = data.bricks || 0;
     const goal = data.goal || 1000;
     counterDisplay.innerText = bricks;
