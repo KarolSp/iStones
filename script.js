@@ -23,6 +23,28 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
+//function getAuthUser(){
+//    return new Promise((resolve)=> {
+//        const unsubscribe = firebase.auth().onAuthStateChanged((user)=>{
+//            unsubscribe();
+//            resolve(user);
+//        });
+//    });
+//}
+//firebase.auth().onAuthStateChanged((user)=>{
+    //if(!user){
+    //    window.location.href = "index.html";
+    //}
+//});
+
+//function identify(){
+//    const user = getAuthUser();
+//    if(!user){
+//        window.location.href = "index.html";
+//        return;
+//    }
+//}
+//identify();
 const database = firebase.database();
 const bricksRef = database.ref('bricks');
 
@@ -63,13 +85,19 @@ database.ref().on('value', (snapshot) => {
 
 buyButton.addEventListener('click',async function(){
     const name = inputName.value;
+    const user = firebase.auth().currentUser;
+    
+    if(!user){
+        alert("Please log in first to purchase.");
+        return;
+    }
     if(name ===""){
         alert("Please fill in your name first.");
         
     } else{
-        bricksRef.transaction((currentValue) => {
-            return (currentValue || 0)+1;
-        });
+        bricksRef.transaction((currentValue)=>(currentValue||0)+1);
+        const userBricksVal= firebase.database().ref('users/'+user.uid+'/myBricks');
+        userBricksVal.transaction((currentValue)=> (currentValue || 0)+1);
         try {
         await generatePDF(name);
         inputName.value = "";
@@ -79,4 +107,22 @@ buyButton.addEventListener('click',async function(){
     }
     }
     
+});
+
+firebase.auth().onAuthStateChanged((user)=> {
+    if(user){
+        const userBricksVal = firebase.database().ref('users/'+ user.uid+'/myBricks');
+        userBricksVal.on('value',(snapshot)=> {
+            const count = snapshot.val()||0;
+            document.getElementById('user-bricks-count').innerText = count;
+        });
+    } else {
+        setTimeout(()=> {
+            if (!firebase.auth().currentUser){
+                window.location.href = "index.html";
+            }
+        }, 10000);
+        document.getElementById('user-bricks-count').innerText = "0";
+        
+    }
 });

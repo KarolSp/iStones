@@ -1,39 +1,29 @@
 <!DOCTYPE html>
-<html lang='en'>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reconstruction of our church</title>
-    <link rel="stylesheet" href="style.css">
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link rel="stylesheet" href = "style.css">
     </head>
-
-<body>
+    <body>
     <header>
-        <h1>Reconstruction of our church</h1>
-    </header>
+        <h1>Please login or sign up</h1>
+        </header>
     <main>
-    <section id="Visualization">
-        <p>See our works progress...</p>
-        <div class="progress-container">
-            <div id="progress-bar"></div>
-        </div>
-        <p id = "progress-text">0% of our goal</p>
+        <section id="login-box">
+            <div class="login-bars">
+                <input type="email" id="email-bar" placeholder="mingzi@gmail.com">
+                <input type="password" id="password-bar" placeholder="Password">
+            </div>
+            <div class="login-buttons">
+                <button id="login-btn">Log in</button>
+                <button id="sign-up-btn">Sign up</button>
+            </div>
         </section>
-    <section id="Counter">
-        <p>We have got already:</p>
-        <div id="totalBricks">0</div>
-        </section>
-    <section id="Donation">
-        <h2>Purchase an istone</h2>
-        <p>Please fill in your name so we can prepare a letter of gratitude for you:</p>
-        <input type="text" id="userName" placeholder="Jack Sparrow">
-        <button id="buyButton">I've sent my money. Give me a letter of gratitude</button>
-        
-        </section>
-    </main>
-    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+        </main>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
-    <script src="script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script> <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    <script src="login.js"></script>
     </body>
 </html>
