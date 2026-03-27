@@ -117,11 +117,9 @@ firebase.auth().onAuthStateChanged((user)=> {
             document.getElementById('user-bricks-count').innerText = count;
         });
     } else {
-        setTimeout(()=> {
-            if (!firebase.auth().currentUser){
+        if (!firebase.auth().currentUser){
                 window.location.href = "index.html";
             }
-        }, 10000);
         document.getElementById('user-bricks-count').innerText = "0";
         
     }
