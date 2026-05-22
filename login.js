@@ -25,20 +25,7 @@ const loginBtn = document.getElementById('login-btn');
 const signupBtn = document.getElementById('sign-up-btn');
 
 signupBtn.addEventListener('click', ()=> {
-    const email = emailInput.value;
-    const password = passwordInput.value;
-    
-    auth.createUserWithEmailAndPassword(email, password)
-        .then((userCredential)=> {
-            userCredential.user.sendEmailVerification().then(() => {
-                alert("Account created. Please chceck your inbox to verify it");
-            });
-        })
-        .catch((error) =>{
-        alert('Error');
-    });
-    emailInput.value = "";
-    passwordInput.value = "";
+    window.location.href = "signup.html";
 });
 
 loginBtn.addEventListener('click', () => {
