@@ -21,6 +21,7 @@ const emailInput = document.getElementById("Email");
 const passwordInput = document.getElementById("Password");
 const signupBtn = document.getElementById("signup-btn");
 const backBtn = document.getElementById("back-btn");
+const googleBtn = document.getElementById("google-pop-btn");
 
 backBtn.addEventListener('click', ()=>{
     window.location.href= "index.html";
@@ -47,4 +48,16 @@ signupBtn.addEventListener('click',()=>{
     });
 });
 
+googleBtn.addEventListener('click',()=>{
+    const google_popup_provider = auth.GoogleAuthProvider();
+    auth.signInWithPopup(google_popup_provider)
+        .then((result)=>{
+            const user = result.user;
+            window.location.href="main.html";
+    })
+        .catch((error)=>{
+            alert("Google registration failed");
+    });
+    
+});
 
