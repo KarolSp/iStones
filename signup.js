@@ -41,6 +41,9 @@ signupBtn.addEventListener('click',()=>{
         .then((userCredential)=>{
             alert("Success!");
             window.location.href="main.html";
+    })
+        .catch((error)=>{
+        alert("Registration error");
     });
 });
 
