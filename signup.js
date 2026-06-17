@@ -40,8 +40,14 @@ signupBtn.addEventListener('click',()=>{
     }
     auth.createUserWithEmailAndPassword(email, password)
         .then((userCredential)=>{
+            const user = userCredential.user;
+            firebase.database().ref('users/'+ user.uid).set({
+                name: name,
+                myBricks:0
+            }).then(()=>{
             alert("Success!");
             window.location.href="main.html";
+            });
     })
         .catch((error)=>{
         alert("Registration error");
@@ -50,13 +56,15 @@ signupBtn.addEventListener('click',()=>{
 
 googleBtn.addEventListener('click',()=>{
     const google_popup_provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(google_popup_provider)
-        .then((result)=>{
-            const user = result.user;
-            window.location.href="main.html";
+    auth.signInWithPopup(google_popup_provider).then((userCredential)=>{
+        const user = userCredential.user;
+        return firebase.database().ref('users/'+user.uid+'/name').set(user.displayName);
     })
-        .catch((error)=>{
-            alert("Google registration failed"+ error.message);
+    .then((result)=>{
+        window.location.href="main.html";
+    })
+    .catch((error)=>{
+        alert("Google registration failed"+ error.message);
     });
     
 });
