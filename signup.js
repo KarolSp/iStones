@@ -56,7 +56,7 @@ googleBtn.addEventListener('click',()=>{
             window.location.href="main.html";
     })
         .catch((error)=>{
-            alert("Google registration failed");
+            alert("Google registration failed"+ error.message);
     });
     
 });
