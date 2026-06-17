@@ -23,6 +23,7 @@ const emailInput = document.getElementById('email-bar');
 const passwordInput = document.getElementById('password-bar');
 const loginBtn = document.getElementById('login-btn');
 const signupBtn = document.getElementById('sign-up-btn');
+const googleBtn = document.getElementById("login-google");
 
 signupBtn.addEventListener('click', ()=> {
     window.location.href = "signup.html";
@@ -43,5 +44,18 @@ loginBtn.addEventListener('click', () => {
         .catch((error)=> {
         alert('Login failed');
     });
+});
+
+googleBtn.addEventListener('click',()=>{
+    const google_popup_provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(google_popup_provider)
+        .then((result)=>{
+            const user = result.user;
+            window.location.href="main.html";
+    })
+        .catch((error)=>{
+            alert("Google registration failed"+ error.message);
+    });
+    
 });
 
