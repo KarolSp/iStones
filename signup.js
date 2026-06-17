@@ -49,7 +49,7 @@ signupBtn.addEventListener('click',()=>{
 });
 
 googleBtn.addEventListener('click',()=>{
-    const google_popup_provider = new auth.GoogleAuthProvider();
+    const google_popup_provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(google_popup_provider)
         .then((result)=>{
             const user = result.user;
