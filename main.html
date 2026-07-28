@@ -5,17 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reconstruction of our church</title>
     <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     </head>
 
 <body>
     <header>
         <h1>Reconstruction of our church</h1>
+        <h2>See our church after the renovation!</h2>
+        <model-viewer
+            src = "church.glb"
+            alt = "3D model of church"
+            auto-rotate
+            camera-controls
+            ar
+            shadow-intensity="1"
+            style="width:100%; height: 350px; background-color:#ffffff; border-radius: 15px; margin-bottom: 15px;">
+        </model-viewer>
     </header>
     <main>
     <section id="Visualization">
         <p>See our works progress...</p>
         <div class="progress-container">
-            <div id="progress-bar"></div>
+            <div id="progress-bar"></div>   
         </div>
         <p id = "progress-text">0% of our goal</p>
         </section>
