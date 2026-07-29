@@ -50,7 +50,8 @@ signupBtn.addEventListener('click',()=>{
             });
     })
         .catch((error)=>{
-        alert("Registration error");
+        alert("Registration error: " + error.message);
+        console.error("Kod błędu:", error.code, "Wiadomość:", error.message);
     });
 });
 
