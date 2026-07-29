@@ -119,7 +119,7 @@ firebase.auth().onAuthStateChanged((user)=> {
         });
         const display_name_of_user = database.ref('users/'+user.uid+'/name');
         display_name_of_user.on('value',(snapshoot)=>{
-            const name = snapshoot.val() || user.displayName || "User";
+            const name = snapshoot.val() || user.displayName || "Sparrow";
             document.getElementById('user-display-name').innerText = name;  
         });
     } else {
