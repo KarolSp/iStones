@@ -1,5 +1,4 @@
 const buyButton = document.getElementById('buyButton');
-const inputName = document.getElementById('userName');
 const counterDisplay = document.getElementById('totalBricks');
 const progressBar = document.getElementById('progress-bar');
 const progressText = document.getElementById('progress-text');
@@ -101,7 +100,6 @@ buyButton.addEventListener('click',async function(){
         userBricksVal.transaction((currentValue)=> (currentValue || 0)+1);
         try {
         await generatePDF(name);
-        inputName.value = "";
     } catch(error) {
         console.error("Pdf generating error", error);
         alert("Pdf generation error");
