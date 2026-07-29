@@ -48,6 +48,7 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 const bricksRef = database.ref('bricks');
 
+
 let bricksCount = 0;
 
 async function generatePDF(name){
@@ -115,6 +116,11 @@ firebase.auth().onAuthStateChanged((user)=> {
         userBricksVal.on('value',(snapshot)=> {
             const count = snapshot.val()||0;
             document.getElementById('user-bricks-count').innerText = count;
+        });
+        const display_name_of_user = database.ref('users/'+user.uid+'/name');
+        display_name_of_user.on('value',(snapshoot)=>{
+            const name = snapshoot.val() || user.displayName || "User";
+            document.getElementById('user-display-name').innerText = name;  
         });
     } else {
         if (!firebase.auth().currentUser){
