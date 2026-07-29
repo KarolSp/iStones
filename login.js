@@ -51,7 +51,7 @@ googleBtn.addEventListener('click',()=>{
     const google_popup_provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(google_popup_provider).then((userCredential)=>{
         const user = userCredential.user;
-        return firebase.database().ref('users/'+user.uid+'/name').set({
+        return firebase.database().ref('users/'+user.uid).set({
             name : user.displayName,
             date_of_creation : new Date().toISOString()
         });
