@@ -41,14 +41,16 @@ signupBtn.addEventListener('click',()=>{
     auth.createUserWithEmailAndPassword(email, password)
         .then((userCredential)=>{
             const user = userCredential.user;
-            firebase.database().ref('users/'+ user.uid).set({
+            return user.sendEmailVerification().then(()=>{
+                return firebase.database().ref('users/'+ user.uid).set({
                 name: name,
-                myBricks:0
-            }).then(()=>{
+                myBricks:0});
+            });
+        })
+        .then(()=>{
             alert("Success!");
             window.location.href="main.html";
-            });
-    })
+        })
         .catch((error)=>{
         alert("Registration error: " + error.message);
         console.error("Kod błędu:", error.code, "Wiadomość:", error.message);
