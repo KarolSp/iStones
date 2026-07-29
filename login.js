@@ -25,6 +25,7 @@ const loginBtn = document.getElementById('login-btn');
 const signupBtn = document.getElementById('sign-up-btn');
 const googleBtn = document.getElementById("login-google");
 
+
 signupBtn.addEventListener('click', ()=> {
     window.location.href = "signup.html";
 });
@@ -50,7 +51,10 @@ googleBtn.addEventListener('click',()=>{
     const google_popup_provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(google_popup_provider).then((userCredential)=>{
         const user = userCredential.user;
-        return firebase.database().ref('users/'+user.uid+'/name').set(user.displayName);
+        return firebase.database().ref('users/'+user.uid+'/name').set({
+            name : user.displayName,
+            date_of_creation : new Date().toISOString()
+        });
     })
     .then((result)=>{
         window.location.href="main.html";
