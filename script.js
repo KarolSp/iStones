@@ -86,7 +86,7 @@ database.ref().on('value', (snapshot) => {
 
 buyButton.addEventListener('click',async function(){
     const user = firebase.auth().currentUser;
-    const name = snapshoot.val() || user.displayName || "Sparrow";
+    const name = document.getElementById('user-display-name').innerText || user.displayName || "Sparrow";
     
     if(!user){
         alert("Please log in first to purchase.");
