@@ -25,7 +25,7 @@ firebase.auth().onAuthStateChanged((user)=> {
         display_name_of_user.on('value',(snapshoot)=>{
             const name = snapshoot.val() || user.displayName || "Sparrow";
             document.getElementById('user-display-name').innerText = name;  
-            nameInput.placeholder = name;
+            nameInput.value = name;
         });
     } else {
         if (!firebase.auth().currentUser){
