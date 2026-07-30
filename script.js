@@ -128,3 +128,17 @@ firebase.auth().onAuthStateChanged((user)=> {
         
     }
 });
+
+const menuBtn = document.getElementById('menu-btn');
+const sideMenu = document.getElementById("side-menu");
+const overlay = document.getElementById('overlay');
+const closeBtn = document.getElementById('close-btn');
+
+function toogleMenu(){
+    sideMenu.classList.toggle('active');
+    overlay.classList.toggle('active');
+}
+
+menuBtn.addEventListener('click', toogleMenu);
+closeBtn.addEventListener('click', toogleMenu);
+overlay.addEventListener('click', toogleMenu);
