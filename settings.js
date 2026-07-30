@@ -18,13 +18,14 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 const backBtn = document.getElementById('back-btn');
+const nameInput = document.getElementById('Name');
 firebase.auth().onAuthStateChanged((user)=> {
     if(user){
         const display_name_of_user = database.ref('users/'+user.uid+'/name');
         display_name_of_user.on('value',(snapshoot)=>{
             const name = snapshoot.val() || user.displayName || "Sparrow";
             document.getElementById('user-display-name').innerText = name;  
-            document.getElementById('Name').innerText = name;
+            nameInput.placeholder = name;
         });
     } else {
         if (!firebase.auth().currentUser){
