@@ -1,5 +1,3 @@
-const database = firebase.database();
-const backBtn = document.getElementById('back-btn');
 const firebaseConfig = {
 
   apiKey: "AIzaSyAo_1kOFD6am4HQZsOnTxi6H3-oOP7pW-o",
@@ -18,7 +16,8 @@ const firebaseConfig = {
 
 };
 firebase.initializeApp(firebaseConfig);
-
+const database = firebase.database();
+const backBtn = document.getElementById('back-btn');
 firebase.auth().onAuthStateChanged((user)=> {
     if(user){
         const display_name_of_user = database.ref('users/'+user.uid+'/name');
