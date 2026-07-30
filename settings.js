@@ -1,3 +1,5 @@
+const database = firebase.database();
+const backBtn = document.getElementById('back-btn');
 const firebaseConfig = {
 
   apiKey: "AIzaSyAo_1kOFD6am4HQZsOnTxi6H3-oOP7pW-o",
@@ -30,4 +32,8 @@ firebase.auth().onAuthStateChanged((user)=> {
             }
         
     }
+});
+
+backBtn.addEventListener('click', ()=>{
+    window.location.href= "main.html";
 });
