@@ -19,6 +19,7 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 const backBtn = document.getElementById('back-btn');
 const nameInput = document.getElementById('Name');
+const saveNameBtn = document.getElementById('save-name-btn');
 firebase.auth().onAuthStateChanged((user)=> {
     if(user){
         const display_name_of_user = database.ref('users/'+user.uid+'/name');
@@ -37,4 +38,10 @@ firebase.auth().onAuthStateChanged((user)=> {
 
 backBtn.addEventListener('click', ()=>{
     window.location.href= "main.html";
+});
+
+const newName = document.getElementById('Name').value;
+
+saveNameBtn.addEventListener('click',()=>{
+    database.ref('/users'+user.uid+'/name').set(newName);
 });
