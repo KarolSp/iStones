@@ -40,8 +40,10 @@ backBtn.addEventListener('click', ()=>{
     window.location.href= "main.html";
 });
 
-const newName = document.getElementById('Name').value;
+
 
 saveNameBtn.addEventListener('click',()=>{
-    database.ref('/users'+user.uid+'/name').set(newName);
+    const user = firebase.auth().currentUser;
+    const newName = document.getElementById('Name').value;
+    database.ref('users/'+user.uid+'/name').set(newName);
 });
