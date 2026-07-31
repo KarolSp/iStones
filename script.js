@@ -51,7 +51,7 @@ const bricksRef = database.ref('bricks');
 
 let bricksCount = 0;
 
-async function generatePDF(name){
+async function generatePDF(name, bricksCount){
     const existingPDFbytes = await fetch('./probny.pdf').then(res => res.arrayBuffer());
     const pdfDoc = await PDFLib.PDFDocument.load(existingPDFbytes);
     const pages = pdfDoc.getPages();
@@ -62,6 +62,12 @@ async function generatePDF(name){
         y:450,
         size: 30,
         color: PDFLib.rgb(0,0,0.8),
+    });
+    firstPage.drawText(bricksCount, {
+        x:250,
+        y:450,
+        size: 30,
+        color: PDFLib.rgb(0,0,0),
     });
     const pdfBytes = await pdfDoc.save();
     const blob = new Blob([pdfBytes], {type: "application/pdf"});
@@ -87,6 +93,7 @@ database.ref().on('value', (snapshot) => {
 generateButton.addEventListener('click',async function(){
     const user = firebase.auth().currentUser;
     const name = document.getElementById('user-display-name').innerText || user.displayName || "Sparrow";
+    const bricksCount = document.getElementById('user-bricks-count').innerText || "0";
     if(!user){
         alert("Please log in first to purchase.");
         return;
@@ -94,7 +101,7 @@ generateButton.addEventListener('click',async function(){
     
     
     try {
-        await generatePDF(name);
+        await generatePDF(name, bricksCount);
     } catch(error) {
         console.error("Pdf generating error", error);
         alert("Pdf generation error");
