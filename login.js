@@ -65,3 +65,33 @@ googleBtn.addEventListener('click',()=>{
     
 });
 
+const overlay = document.getElementById('overlay');
+const forgotBtn = document.getElementById("forgot-password");
+const forgotMenu = document.getElementById("forgot-menu");
+const resetBtn = document.getElementById("reset");
+
+function bottomMenu() {
+    forgotMenu.classList.toggle('active');
+    overlay.classList.toggle('active');
+}
+
+
+
+forgotBtn.addEventListener('click', bottomMenu);
+overlay.addEventListener('click',bottomMenu);
+
+resetBtn.addEventListener('click',()=>{
+    const email_to_reset = document.getElementById("reset-email").value.trim();
+    if(email_to_reset ===""){
+        alert("Please fill in your email in order to reset password.");
+    }else{
+        auth.sendPasswordResetEmail(email_to_reset)
+        .then(()=>{
+            alert("Please check your inbox.");
+            bottomMenu();
+        })
+        .catch((Error)=>{
+            alert("Error: "+ error.message);
+        });
+    }
+});

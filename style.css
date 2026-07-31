@@ -129,6 +129,24 @@ button:hover {
     margin-top: 10px;
 }
 
+.forgot-menu {
+    position: fixed;
+    bottom: -260px;
+    height: 250px;
+    width: 80%;
+    background-color: antiquewhite;
+    transition: top 0.5s ease;
+    z-index: 1002;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 18px;
+}
+
+.forgot-menu.active {
+    bottom: 0;
+}
+
 .close-btn {
     position: absolute;
     top: 10px;
