@@ -1,4 +1,5 @@
 const buyButton = document.getElementById('buyButton');
+const generateButton = document.getElementById('generateButton');
 const counterDisplay = document.getElementById('totalBricks');
 const progressBar = document.getElementById('progress-bar');
 const progressText = document.getElementById('progress-text');
@@ -83,6 +84,25 @@ database.ref().on('value', (snapshot) => {
     progressText.innerText = Math.floor(percentage) + "% of our goal";
 });
 
+generateButton.addEventListener('click',async function(){
+    const user = firebase.auth().currentUser;
+    const name = document.getElementById('user-display-name').innerText || user.displayName || "Sparrow";
+    if(!user){
+        alert("Please log in first to purchase.");
+        return;
+    }
+    
+    
+    try {
+        await generatePDF(name);
+    } catch(error) {
+        console.error("Pdf generating error", error);
+        alert("Pdf generation error");
+    }
+    
+    
+});
+
 buyButton.addEventListener('click',async function(){
     const user = firebase.auth().currentUser;
     const name = document.getElementById('user-display-name').innerText || user.displayName || "Sparrow";
@@ -98,12 +118,6 @@ buyButton.addEventListener('click',async function(){
         bricksRef.transaction((currentValue)=>(currentValue||0)+1);
         const userBricksVal= firebase.database().ref('users/'+user.uid+'/myBricks');
         userBricksVal.transaction((currentValue)=> (currentValue || 0)+1);
-        try {
-        await generatePDF(name);
-    } catch(error) {
-        console.error("Pdf generating error", error);
-        alert("Pdf generation error");
-    }
     }
     
 });
