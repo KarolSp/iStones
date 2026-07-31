@@ -116,6 +116,8 @@ button:hover {
     text-align: left;
     padding: 20px;
     box-sizing: border-box;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 
 .side-menu.active {
